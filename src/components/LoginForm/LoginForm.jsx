@@ -1,12 +1,24 @@
 import React, { useState } from 'react'
 export const LoginForm = () => {
-  const [email, setEmail] = useState('')
   const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [validateMessage, setValidateMessage] = useState('')
   
+  const [user, setUser] = useState(null)
   const submit = () => {
-    console.log("submit")
+    if(name === '' || email === '' || password === ''){
+      setValidateMessage('لطفا مشخصات را کامل وارد نمایید')
+    } else {
+      setName('')
+      setEmail('')
+      setPassword('') 
+      setUser({
+        name: name,
+        email: email,
+        password: password
+      })
+    }
   }
   return (
     <div>
@@ -14,44 +26,43 @@ export const LoginForm = () => {
         <div className='card form-body w-50 h-auto p-4'>
           <div className='title-form mt-5 text-center'>
             <h3 className='fs-5 fw-normal'>
-              برای ثبت نام مشخصات خود را وارد نمایید و سپس بر روی دکمه ورود کلیک کنید.
+              برای ثبت نام مشخصات خود را وارد نمایید و سپس بر روی دکمه ثبت نام کلیک کنید.
             </h3>
           </div>
           <form className='forms w-100 h-auto'>
+
             <div className="mb-3">
-              <label htmlFor="name" className="form-label">نام و نام خانوادگی</label>
+              <label htmlFor="name" className="form-label fs-5">
+                نام و نام خانوادگی
+              </label>
               <input type="name" id='name' onChange={(e) => setName(e.target.value)} value={name} className="form-control" />
             </div>
 
-            <div>
-              <label className='m-3' htmlFor="inputEmail">
-                <p className='fs-5'>
-                  ایمیل
-                </p>
-                <input type="email" id="email" onChange={(e) => setEmail(e.target.value)} value={email}/>
+            <div className="mb-3">
+              <label htmlFor="name" className="form-label fs-5">
+                ایمیل
               </label>
+              <input type="name" id='email' onChange={(e) => setEmail(e.target.value)} value={email} className="form-control" />
             </div>
 
-            <div>
-              <label className='m-3' htmlFor="inputPassword">
-                <p className='fs-5'>
-                  پسورد
-                </p>
-                <input type="password" id='password' onChange={(e) => setPassword(e.target.value)} value={password}/>
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label fs-5">
+                رمز عبور
               </label>
+              <input type="name" id='name' onChange={(e) => setPassword(e.target.value)} value={password} className="form-control" />
             </div>
           </form>
 
           <div className='submit w-100 h-auto text-center m-2'>
-            <button type="button" className='btn btn-primary fs-5' onClick={submit}>
-              انجام شد
+            <button type="button" className='btn btn-primary fs-5 w-25' onClick={submit}>
+               ثبت نام
             </button>
           </div>
 
-          <div>
+          <div className='text-center mt-4'>
             {
               validateMessage !== '' ?
-              <div className="alert alert-secondary" role="alert">
+              <div className="alert alert-danger" role="alert">
                 {validateMessage}
               </div>
               :
@@ -61,6 +72,48 @@ export const LoginForm = () => {
 
         </div>
       </section>
+
+
+      {
+        user != null ?
+        <div className=' w-100 row justify-content-center'>
+        
+      <div class="card w-75 ">
+        <div class="card-header fs-5 text-center">
+          اطلاعات کاربر ثبت نام شده
+        </div>
+        
+        <div className='card-body'>
+          <p className='card-name fs-5 list-group-item m-4'>
+            نام و نام خانوادگی:
+            {
+              user.name
+            }
+          </p>
+          <p className='card-text fs-5 list-group-item m-4'>
+            ایمیل: 
+            {
+              user.email
+            }
+          </p>
+          <p className='card-password fs-5 list-group-item m-4'>
+            رمز عبور:
+            {
+              user.password
+            }
+          </p>
+      </div>
+       </div>
+      </div>
+      :
+      ''
+      }
+      
+      
+
+
+
+
     </div>
   )
 }
