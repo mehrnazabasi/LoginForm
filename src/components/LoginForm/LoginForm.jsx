@@ -40,7 +40,7 @@ export const LoginForm = () => {
           </form>
 
           <div className='submit w-100 h-auto text-center m-2'>
-           <button type="button" class="btn btn-secondary w-25 fs-5" onClick={submit}>
+           <button type="button" className='btn btn-secondary w-25 fs-5' onClick={submit}>
             انجام شد
            </button>
           </div>
