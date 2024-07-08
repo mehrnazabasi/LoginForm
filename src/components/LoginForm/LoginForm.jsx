@@ -22,7 +22,7 @@ export const LoginForm = () => {
   }
   return (
     <div>
-      <section className='w-100 vh-100 d-flex justify-content-center align-items-center' >     
+      <section className='w-100 d-flex justify-content-center align-items-center'>     
         <div className='card form-body w-50 h-auto p-4'>
           <div className='title-form mt-5 text-center'>
             <h3 className='fs-5 fw-normal'>
@@ -35,21 +35,21 @@ export const LoginForm = () => {
               <label htmlFor="name" className="form-label fs-5">
                 نام و نام خانوادگی
               </label>
-              <input type="name" id='name' onChange={(e) => setName(e.target.value)} value={name} className="form-control" />
+              <input type="text" id='name' onChange={(e) => setName(e.target.value)} value={name} className="form-control" />
             </div>
 
             <div className="mb-3">
               <label htmlFor="name" className="form-label fs-5">
                 ایمیل
               </label>
-              <input type="name" id='email' onChange={(e) => setEmail(e.target.value)} value={email} className="form-control" />
+              <input type="email" id='email' onChange={(e) => setEmail(e.target.value)} value={email} className="form-control" />
             </div>
 
             <div className="mb-3">
               <label htmlFor="password" className="form-label fs-5">
                 رمز عبور
               </label>
-              <input type="name" id='name' onChange={(e) => setPassword(e.target.value)} value={password} className="form-control" />
+              <input type="password" id='name' onChange={(e) => setPassword(e.target.value)} value={password} className="form-control" />
             </div>
           </form>
 
@@ -76,44 +76,38 @@ export const LoginForm = () => {
 
       {
         user != null ?
-        <div className=' w-100 row justify-content-center'>
+        <div className='w-50 row justify-content-center mt-4 mb-5 mx-auto'>
         
-      <div class="card w-75 ">
-        <div class="card-header fs-5 text-center">
-          اطلاعات کاربر ثبت نام شده
+          <div className="card px-0">
+            <div className="card-header fs-5 text-center">
+              اطلاعات کاربر ثبت نام شده
+            </div>
+            
+            <div className='card-body'>
+              <p className='card-name fs-5 list-group-item m-0'>
+                نام و نام خانوادگی:
+                {
+                  user.name
+                }
+              </p>
+              <p className='card-text fs-5 list-group-item m-0'>
+                ایمیل: 
+                {
+                  user.email
+                }
+              </p>
+              <p className='card-password fs-5 list-group-item m-0'>
+                رمز عبور:
+                {
+                  user.password
+                }
+              </p>
+            </div>
+          </div>
         </div>
-        
-        <div className='card-body'>
-          <p className='card-name fs-5 list-group-item m-4'>
-            نام و نام خانوادگی:
-            {
-              user.name
-            }
-          </p>
-          <p className='card-text fs-5 list-group-item m-4'>
-            ایمیل: 
-            {
-              user.email
-            }
-          </p>
-          <p className='card-password fs-5 list-group-item m-4'>
-            رمز عبور:
-            {
-              user.password
-            }
-          </p>
-      </div>
-       </div>
-      </div>
-      :
-      ''
+        :
+        ''
       }
-      
-      
-
-
-
-
     </div>
   )
 }
